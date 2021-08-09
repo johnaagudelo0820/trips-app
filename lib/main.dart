@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'description_place.dart';
+import 'review_list.dart';
+import 'gradient_back.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarBrightness: Brightness.light
+      )
+  );
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  String description = '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec lorem purus. Integer non euismod nulla. Etiam convallis dolor quis lectus posuere, vel hendrerit sapien consectetur. Sed venenatis ante eros, quis hendrerit lacus maximus quis. Proin sit amet turpis sed turpis maximus fringilla. Duis scelerisque ante nibh, euismod consectetur ligula consequat id. Duis iaculis quam vel eros pharetra vulputate. Pellentesque quam augue, mollis vel sapien in, iaculis pellentesque leo. Pellentesque blandit condimentum odio nec tristique. In quis justo ut erat efficitur luctus sit amet id odio.
+  Vestibulum non dui suscipit, posuere lectus sed, ultrices tellus. Sed euismod felis at nulla eleifend cursus. Sed ultricies erat congue, pretium ex ac, rhoncus tortor.
+  ''';
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -29,13 +41,25 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(
+        /* appBar: AppBar(
           title: Text(
               'Hola mundo platzi',
 
           ),
+        ), */
+        // body: new DescriptionPlace('John', 5, 'Text'),
+        // body: ReviewList(),
+        body: Stack(
+            children: <Widget>[
+              ListView(
+                children: [
+                  DescriptionPlace('John', 5, description),
+                  ReviewList(),
+                ],
+              ),
+              GradientBack('Popular')
+            ],
         ),
-        body: new DescriptionPlace('John', 5, 'Text'),
       ) // MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

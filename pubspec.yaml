@@ -76,6 +76,11 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/imgs/people.jpg
+    - assets/imgs/beach_palm.jpeg
+    - assets/imgs/girl.jpg
+    - assets/imgs/mountain_stars.jpeg
+    - assets/imgs/river.jpeg
+    - assets/imgs/sunset.jpeg
   fonts:
     - family: Lato
       fonts:
