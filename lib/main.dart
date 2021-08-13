@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'description_place.dart';
 import 'review_list.dart';
-import 'gradient_back.dart';
+import 'header_appbar.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -53,11 +53,11 @@ class MyApp extends StatelessWidget {
             children: <Widget>[
               ListView(
                 children: [
-                  DescriptionPlace('John', 5, description),
+                  DescriptionPlace('Bahamas', 5, description),
                   ReviewList(),
                 ],
               ),
-              GradientBack('Popular')
+              HeaderAppbar()
             ],
         ),
       ) // MyHomePage(title: 'Flutter Demo Home Page'),
