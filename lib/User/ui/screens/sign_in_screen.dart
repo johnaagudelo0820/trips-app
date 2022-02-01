@@ -5,6 +5,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:tripsapp/widgets/gradient_back.dart';
 import 'package:tripsapp/widgets/button_green.dart';
 import 'package:tripsapp/User/bloc/bloc_user.dart';
+import 'package:tripsapp/main_trips_cupertino.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -21,8 +22,20 @@ class _SignInScreen extends State<SignInScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     userBloc = BlocProvider.of(context);
+    return _handleCurrentsession();
+  }
 
-    return signInGoogleUI();
+  Widget _handleCurrentsession() {
+    return StreamBuilder(
+        stream: userBloc.authStatus,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          // snapshot contain our data - Obeject user
+          if (!snapshot.hasData || snapshot.hasError) {
+            return signInGoogleUI();
+          } else {
+            return TripsCupertino();
+          }
+        });
   }
 
   Widget signInGoogleUI() {
@@ -45,9 +58,9 @@ class _SignInScreen extends State<SignInScreen> {
               ButtonGreen(
                   width: 300,
                   height: 50,
-                  onPressed: () {
-                    userBloc.signIn().then((User user) =>
-                        print("El usuario es ${user.displayName}"));
+                  onPressed: () async {
+                    User user = await userBloc.signIn();
+                    print("El usuario es ${user.displayName}");
                   },
                   text: 'Login with Gmail'),
             ],
